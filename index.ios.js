@@ -19,7 +19,7 @@ var WrapUpPunks = React.createClass({
     },
 
     handleButtonClick: function() {
-	this.setState({active: !this.state.active })
+	this.setState({ active: !this.state.active })
     },
 
     render: function() {
