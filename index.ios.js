@@ -8,29 +8,50 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
+    Text,
+    TouchableHighlight,
   View
 } from 'react-native';
 
-class WrapUpPunks extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
-  }
-}
+var WrapUpPunks = React.createClass({
+    getInitialState: function() {
+	return { active: false }
+    },
 
+    handleButtonClick: function() {
+	this.setState({active: !this.state.active })
+    },
+
+    render: function() {
+	
+	return (
+	    <View style={styles.container}>
+            <Text style={styles.instructions}>
+	    Click the button to make a sound!
+            </Text>
+	    <TouchableHighlight style={styles.button} onPress={this.handleButtonClick} underlayColor='#99d9f4'>
+	    <Text style={styles.buttonText}>{ this.state.active ? "YOYOYO" : "NONONONNO" }</Text>
+	    </TouchableHighlight>
+	    </View>
+	);
+    }
+   
+});
+
+/* 
+ * class WrapUpPunks extends Component {
+ *     constructor() {
+ * 	this.state = { active: false } 
+ * 	}
+ * 
+ * 
+ *     handleButtonClick() {
+ * 	// updatinh the state
+ * 	this.setState({ active: !this.state.active });
+ *     };
+ * 
+ * }
+ * */
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -38,16 +59,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    instructions: {
+	alignItems: 'center',
+	color: 'magenta',
+    },
+    button: {
+	borderWidth: 1,
+	borderColor: '#48BBEC',
+	borderRadius: 8,
+	}
 });
 
 AppRegistry.registerComponent('WrapUpPunks', () => WrapUpPunks);
