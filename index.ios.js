@@ -6,12 +6,35 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
+    AppRegistry,
+    StyleSheet,
     Text,
     TouchableHighlight,
-  View
+    View
 } from 'react-native';
+
+// Import the react-native-sound module 
+var Sound = require('react-native-sound');
+
+// Load the sound file 'whoosh.mp3' from the app bundle 
+// See notes below about preloading sounds within initialization code below. 
+var whoosh = new Sound('whoosh.mp3', Sound.MAIN_BUNDLE, (error) => {
+    if (error) {
+	console.log('failed to load the sound', error);
+    } else { // loaded successfully 
+	console.log('duration in seconds: ' + whoosh.getDuration() +
+		    'number of channels: ' + whoosh.getNumberOfChannels());
+    }
+});
+
+// Play the sound with an onEnd callback 
+whoosh.play((success) => {
+    if (success) {
+	console.log('successfully finished playing');
+    } else {
+	console.log('playback failed due to audio decoding errors');
+    }
+});
 
 var WrapUpPunks = React.createClass({
     getInitialState: function() {
