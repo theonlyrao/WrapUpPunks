@@ -6,6 +6,7 @@
 
 import React, { Component } from 'react';
 // import Frog file currently in root directory and figure out how to point to it in line 22
+
 import {
     AppRegistry,
     StyleSheet,
@@ -19,17 +20,16 @@ var Sound = require('react-native-sound');
 
 // Load the sound file 'whoosh.mp3' from the app bundle 
 // See notes below about preloading sounds within initialization code below. 
-var whoosh = new Sound('Frog.aiff', Sound.MAIN_BUNDLE , (error) => {
+var whoosh = new Sound('whoosh.mp3', Sound.MAIN_BUNDLE, (error) => {
     if (error) {
 	console.log('failed to load the sound', error);
     } else { // loaded successfully 
-	console.log('duration in seconds: ' + whoosh.getDuration() +
-		    'number of channels: ' + whoosh.getNumberOfChannels());
+	console.log('properly loaded the sound');
     }
 });
 
 // Play the sound with an onEnd callback 
-whoosh.play((success) => {
+var playSound = whoosh.play((success) => {
     if (success) {
 	console.log('successfully finished playing');
     } else {
@@ -44,7 +44,7 @@ var WrapUpPunks = React.createClass({
 
     handleButtonClick: function() {
 	this.setState({ active: !this.state.active })
-	onEnd: whoosh
+	onEnd: playSound
     },
 
     render: function() {
