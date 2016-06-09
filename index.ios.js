@@ -6,7 +6,8 @@
 
 import React, { Component } from 'react';
 // import Frog file currently in root directory and figure out how to point to it in line 22
-
+require('./Frog.aiff')
+//import File from './Frog';
 import {
     AppRegistry,
     StyleSheet,
@@ -20,11 +21,11 @@ var Sound = require('react-native-sound');
 
 // Load the sound file 'whoosh.mp3' from the app bundle 
 // See notes below about preloading sounds within initialization code below. 
-var whoosh = new Sound('whoosh.mp3', Sound.MAIN_BUNDLE, (error) => {
+var whoosh = new Sound('Frog.aiff', Sound.MAIN_BUNDLE, (error) => {
     if (error) {
-	console.log('failed to load the sound', error);
+ 	console.log('failed to load the sound', error);
     } else { // loaded successfully 
-	console.log('properly loaded the sound');
+ 	console.log('properly loaded the sound');
     }
 });
 
